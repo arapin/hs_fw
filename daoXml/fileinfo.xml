@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="uploadFileInfoInsert" desc="파일정보 입력">
+		<table>uploadFile</table>
+		<field>
+			<item>parentId</item>
+			<item>cate</item>
+			<item>type</item>
+			<item>size</item>
+			<item>orgName</item>
+			<item>saveName</item>
+			<item>main</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<update id="uploadFileInfoParentUpdate" desc="파일 부모번호 수정">
+		<table>uploadFile</table>
+		<field>
+			<item>parentId</item>
+			<item>cate</item>
+		</field>
+		<where>
+		<![CDATA[
+			parentId=:parentId
+		]]>
+		</where>
+	</update>
+	<update id="mainImageChk" desc="대표이미지 설정">
+		<table>uploadFile</table>
+		<field>
+			<item>main</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<update id="mainImageChkDefault" desc="대표이미지 설정">
+		<table>uploadFile</table>
+		<field>
+			<item>main</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</update>
+	<delete id="fileInfoDelete">
+		<table>uploadFile</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<delete id="profileDelete">
+		<table>uploadFile</table>
+		<where>
+		<![CDATA[
+			cate="profile" AND parentId = :SHId
+		]]>
+		</where>
+	</delete>
+	<delete id="mainImgDelete">
+		<table>uploadFile</table>
+		<where>
+		<![CDATA[
+			cate=:type AND parentId = :idx
+		]]>
+		</where>
+	</delete>
+	<select id="uploadFileInfoList">
+		<table>uploadFile</table>
+		<field>
+			<item>idx</item>
+			<item>parentId</item>
+			<item>cate</item>
+			<item>type</item>
+			<item>orgName</item>
+			<item>saveName</item>
+			<item>regDate</item>
+			<item>main</item>
+		</field>
+		<where>
+		<![CDATA[
+			parentId=:parentId AND cate=:type ORDER BY idx DESC
+		]]>
+		</where>
+	</select>
+	<select id="uploadFileInfoMain">
+		<table>uploadFile</table>
+		<field>
+			<item>idx</item>
+			<item>parentId</item>
+			<item>cate</item>
+			<item>type</item>
+			<item>orgName</item>
+			<item>saveName</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			parentId=:parentId AND cate=:type AND main = 'Y'
+		]]>
+		</where>
+	</select>
+	<select id="uploadFileInfo">
+		<table>uploadFile</table>
+		<field>
+			<item>parentId</item>
+			<item>cate</item>
+			<item>type</item>
+			<item>size</item>
+			<item>orgName</item>
+			<item>saveName</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</select>
+</data> 

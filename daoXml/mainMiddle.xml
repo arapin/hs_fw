@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<select id="mainMiddleList">
+		<table>mainMiddleImg</table>
+		<field>
+			<item>idx</item>
+			<item>seq</item>
+			<item>imgName</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+	<select id="mainMiddleSelect">
+		<table>mainMiddleImg</table>
+		<field>
+			<item>idx</item>
+			<item>seq</item>
+			<item>imgName</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+	<select id="mainMiddleSelectSeq">
+		<table>mainMiddleImg</table>
+		<field>
+			<item>idx</item>
+		</field>
+		<where>
+		<![CDATA[
+			seq = :seq
+		]]>
+		</where>
+	</select>
+	<select id="mainMiddleTotalCnt">
+		<table>mainMiddleImg</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as mbCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+</data> 

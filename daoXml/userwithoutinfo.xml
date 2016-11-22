@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<insert id="userWithoutInfoInsert" desc="회원탈퇴정보 입력">
+		<table>userWithout</table>
+		<field>
+			<item>userId</item>
+			<item>userName</item>
+			<item>outType</item>
+			<item>outTypeEtc</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<select id="searchIdWithout" desc="회원정보 로그인 정보">
+		<table>userWithout</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as withOutCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			userId=:id
+		]]>
+		</where>
+	</select>
+</data> 

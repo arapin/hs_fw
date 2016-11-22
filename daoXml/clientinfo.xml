@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<insert id="clientInfoInsert" desc="입주사정보 입력">
+		<table>clientInfo</table>
+		<field>
+			<item>SHId</item>
+			<item>name</item>
+			<item>SHPwd</item>
+			<item>SHName</item>
+			<item>SHPhone</item>
+			<item>SHAddress</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHStatus</item>
+			<item>writeDate</item>
+			<item>SHZipcode</item>
+			<item>SHAddress2</item>
+		</field>
+	</insert>
+
+	<insert id="clientInfoInsertFront" desc="입주사정보 입력">
+		<table>clientInfo</table>
+		<field>
+			<item>SHId</item>
+			<item>name</item>
+			<item>SHPwd</item>
+			<item>SHName</item>
+			<item>SHPhone</item>
+			<item>SHAddress</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHStatus</item>
+			<item>writeDate</item>
+			<item>SHZipcode</item>
+			<item>SHAddress2</item>
+			<item>SHEmail</item>
+		</field>
+	</insert>
+
+	<update id="clientInfoUpdate" desc="입주사정보 수정">
+		<table>clientInfo</table>
+		<field>
+			<item>name</item>
+			<item>SHName</item>
+			<item>SHTel</item>
+			<item>SHPhone</item>
+			<item>SHAddress</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHDesc</item>
+			<item>SHWord</item>
+			<item>SHStartTime</item>
+			<item>SHEndTime</item>
+			<item>SHZipcode</item>
+			<item>SHAddress2</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</update>
+
+	<update id="clientInfoUpdateMng" desc="입주사정보 수정">
+		<table>clientInfo</table>
+		<field>
+			<item>name</item>
+			<item>SHName</item>
+			<item>SHTel</item>
+			<item>SHPhone</item>
+			<item>SHAddress</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHDesc</item>
+			<item>SHStartTime</item>
+			<item>SHEndTime</item>
+			<item>SHPwd</item>
+			<item>SHZipcode</item>
+			<item>SHAddress2</item>
+			<item>SHWord</item>
+			<item>SHRestSTime</item>
+			<item>SHRestETime</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</update>
+
+	<update id="clientApply" desc="입주사정보 승인">
+		<table>clientInfo</table>
+		<field>
+			<item>SHStatus</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</update>
+
+	<update id="clientApply2" desc="입주사정보 승인">
+		<table>clientInfo</table>
+		<field>
+			<item>SHApply</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</update>
+
+	<delete id="clientInfoDelete" desc="입주사정보 탈퇴">
+		<table>clientInfo</table>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</delete>
+
+	<select id="clientCnt" desc="입주사유무 판단">
+		<table>clientInfo</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as clientCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId AND SHStatus = 'U'
+		]]>
+		</where>
+	</select>
+	<select id="clientJoinCnt" desc="입주사유무 판단">
+		<table>clientInfo</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as clientCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</select>
+
+	<select id="clientLoginInfo" desc="입주사 로그인 정보">
+		<table>clientInfo</table>
+		<field>
+			<item>SHId</item>
+			<item>SHPwd</item>
+			<item>name</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</select>
+
+	<select id="clientModify" desc="입주사정보 수정 정보추출">
+		<table>clientInfo</table>
+		<field>
+			<item>idx</item>
+			<item>SHId</item>
+			<item>SHPwd</item>
+			<item>name</item>
+			<item>SHName</item>
+			<item>SHTel</item>
+			<item>SHPhone</item>
+			<item>SHZipcode</item>
+			<item>SHAddress</item>
+			<item>SHAddress2</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHDesc</item>
+			<item>SHStartTime</item>
+			<item>SHEndTime</item>
+			<item>SHStatus</item>
+			<item>writeDate</item>
+			<item>SHWord</item>
+			<item>SHRestSTime</item>
+			<item>SHRestETime</item>
+			<item>SHEmail</item>
+			<item>SHApply</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId=:SHId
+		]]>
+		</where>
+	</select>
+	<select id="clientList" desc="입주사리스트">
+		<table>clientInfo</table>
+		<field>
+			<item>idx</item>
+			<item>SHName</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHDesc</item>
+			<item>SHId</item>
+		</field>
+		<where>
+			SHStatus = 'U'
+		</where>
+	</select>
+	<select id="clientListMng" desc="입주사관리자리스트">
+		<table>clientInfo</table>
+		<field>
+			<item>idx</item>
+			<item>SHName</item>
+			<item>SHId</item>
+			<item>SHPhone</item>
+			<item>SHStatus</item>
+			<item>writeDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+	<select id="clientTotalCnt" desc="무속인수">
+		<table>clientInfo</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as clientCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+	<select id="getclientName" desc="입주사명 추출">
+		<table>clientInfo</table>
+		<field>
+			<item>SHId</item>
+			<item>SHPwd</item>
+			<item>name</item>
+			<item>SHName</item>
+			<item>SHTel</item>
+			<item>SHPhone</item>
+			<item>SHZipcode</item>
+			<item>SHAddress</item>
+			<item>SHAddress2</item>
+			<item>SHLng</item>
+			<item>SHLat</item>
+			<item>SHDesc</item>
+			<item>SHStartTime</item>
+			<item>SHEndTime</item>
+			<item>SHStatus</item>
+			<item>writeDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:SHIdx
+		]]>
+		</where>
+	</select>
+	<select id="getclientNamePay" desc="입주사명 추출">
+		<table>
+		<![CDATA[
+			clientInfo as a, payment as b, reservation as c
+		]]>
+		</table>
+		<field>
+			<item>SHName</item>
+			<item>name</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = c.SHIdx AND b.idx = c.paymentIdx AND b.idx=:idx
+		]]>
+		</where>
+	</select>
+
+	<select id="searchclientTotalCnt" desc="검색 입주사">
+		<table>
+		<![CDATA[
+			clientInfo AS a, clientProductRelay AS b, product AS c
+		]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(Distinct SHId) as clientCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			 a.idx = b.SHIdx AND  b.proIdx = c.idx AND a.SHstatus = 'U'
+		]]>
+		</where>
+	</select>
+
+	<select id="searchclientList" desc="검색 입주사 리스트">
+		<table>
+		<![CDATA[
+			clientInfo AS a, clientProductRelay AS b, product AS c
+		]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				a.idx as SHIdx
+			]]>
+			</item>
+			<item>SHName</item>
+			<item>SHAddress</item>
+			<item>SHLng</item>
+			<item>SHDesc</item>
+			<item>SHLat</item>
+			<item>
+			<![CDATA[
+				a.SHId
+			]]>
+			</item>
+			<item>SHTel</item>
+			<item>SHStatus</item>
+			<item>SHApply</item>
+			<item>
+			<![CDATA[
+				b.price as prdPrice
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			 a.idx = b.SHIdx AND  b.proIdx = c.idx AND a.SHstatus = 'U'
+		]]>
+		</where>
+	</select>
+</data> 

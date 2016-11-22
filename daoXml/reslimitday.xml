@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<insert id="limitInfoInsert" desc="회원탈퇴정보 입력">
+		<table>resLimitDay</table>
+		<field>
+			<item>SHIdx</item>
+			<item>startDate</item>
+			<item>endDate</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<delete id="limitInfoDelete" desc="회원정보 탈퇴">
+		<table>resLimitDay</table>
+		<where>
+		<![CDATA[
+			SHIdx=:SHIdx
+		]]>
+		</where>
+	</delete>
+	<delete id="limitInfoDeleteSelect" desc="회원정보 탈퇴">
+		<table>resLimitDay</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<select id="searchLimitInfo" desc="회원정보 로그인 정보">
+		<table>resLimitDay</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as limitCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHIdx = :SHIdx
+		]]>
+		</where>
+	</select>
+
+	<select id="searchLimitInfoList" desc="예약제한 가져오기">
+		<table>resLimitDay</table>
+		<field>
+			<item>idx</item>
+			<item>startDate</item>
+			<item>endDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHIdx = :SHIdx ORDER BY startDate
+		]]>
+		</where>
+	</select>
+</data> 

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="productInfoInsert">
+		<table>product</table>
+		<field>
+			<item>proName</item>
+			<item>proPrice</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<update id="productInfoUpdate">
+		<table>product</table>
+		<field>
+			<item>proName</item>
+			<item>proPrice</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<delete id="productInfoDelete">
+		<table>product</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<select id="productInfoTotalCnt" desc="상품갯수">
+		<table>product</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as productCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		</where>
+	</select>
+	<select id="productInfoListMng">
+		<table>product</table>
+		<field>
+			<item>idx</item>
+			<item>proName</item>
+			<item>proPrice</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+	<select id="productInfoList">
+		<table>product</table>
+		<field>
+			<item>idx</item>
+			<item>proName</item>
+			<item>proTime</item>
+		</field>
+		<where>
+		<![CDATA[
+			
+		]]>
+		</where>
+	</select>
+	<select id="productInfoListQuestion">
+		<table>product</table>
+		<field>
+			<item>idx</item>
+			<item>proName</item>
+			<item>proPrice</item>
+		</field>
+		<where>
+		<![CDATA[
+			proPrice > 0
+		]]>
+		</where>
+	</select>
+	<select id="productInfoSelect">
+		<table>product</table>
+		<field>
+			<item>idx</item>
+			<item>proName</item>
+			<item>proTime</item>
+			<item>proPrice</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+</data> 

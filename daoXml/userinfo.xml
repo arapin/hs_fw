@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<insert id="userInfoInsert" desc="회원정보 입력">
+		<table>userinfo</table>
+		<field>
+			<item>id</item>
+			<item>pwd</item>
+			<item>email</item>
+			<item>writeDate</item>
+			<item>birthday</item>
+			<item>birthdayType</item>
+			<item>birthdayTime</item>
+			<item>zipcode</item>
+			<item>address</item>
+			<item>address2</item>
+			<item>name</item>
+			<item>nameCH</item>
+			<item>phone</item>
+		</field>
+	</insert>
+
+	<update id="userInfoUpdate" desc="회원정보 수정">
+		<table>userinfo</table>
+		<field>
+			<item>email</item>
+			<item>birthday</item>
+			<item>birthdayType</item>
+			<item>birthdayTime</item>
+			<item>zipcode</item>
+			<item>address</item>
+			<item>address2</item>
+			<item>name</item>
+			<item>nameCH</item>
+			<item>phone</item>
+			<item>pwd</item>
+		</field>
+		<where>
+		<![CDATA[
+			id=:id
+		]]>
+		</where>
+	</update>
+
+	<delete id="userInfoDelete" desc="회원정보 탈퇴">
+		<table>userinfo</table>
+		<where>
+		<![CDATA[
+			id=:id
+		]]>
+		</where>
+	</delete>
+
+	<select id="userCnt" desc="회원유무 판단">
+		<table>userinfo</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as userCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			id=:id
+		]]>
+		</where>
+	</select>
+	<select id="userLogin" desc="회원정보 로그인 정보">
+		<table>userinfo</table>
+		<field>
+			<item>id</item>
+			<item>pwd</item>
+			<item>name</item>
+		</field>
+		<where>
+		<![CDATA[
+			id=:id
+		]]>
+		</where>
+	</select>
+	<select id="userModify" desc="회원정보 수정 정보추출">
+		<table>userinfo</table>
+		<field>
+			<item>id</item>
+			<item>email</item>
+			<item>birthday</item>
+			<item>birthdayType</item>
+			<item>birthdayTime</item>
+			<item>zipcode</item>
+			<item>address</item>
+			<item>address2</item>
+			<item>name</item>
+			<item>nameCH</item>
+			<item>phone</item>
+			<item>pwd</item>
+		</field>
+		<where>
+		<![CDATA[
+			id=:id
+		]]>
+		</where>
+	</select>
+	<select id="userList" desc="관리자리스트">
+		<table>userinfo</table>
+		<field>
+			<item>idx</item>
+			<item>id</item>
+			<item>pwd</item>
+			<item>email</item>
+			<item>writeDate</item>
+			<item>name</item>
+			<item>birthday</item>
+			<item>phone</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+	<select id="userTotalCnt" desc="회원수">
+		<table>userinfo</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as userCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+
+	<select id="userIdSearch" desc="아이디 찾기">
+		<table>userinfo</table>
+		<field>
+			<item>id</item>
+		</field>
+		<where>
+		<![CDATA[
+			name = :name AND email = :email
+		]]>
+		</where>
+	</select>
+
+	<select id="userPwdSearch" desc="비밀번호 찾기">
+		<table>userinfo</table>
+		<field>
+			<item>pwd</item>
+		</field>
+		<where>
+		<![CDATA[
+			id=:id AND name=:name AND email=:email
+		]]>
+		</where>
+	</select>
+</data> 

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="boardInfoInsert" desc="게시판정보 입력">
+		<table>board</table>
+		<field>
+			<item>code</item>
+			<item>thread</item>
+			<item>depth</item>
+			<item>userId</item>
+			<item>title</item>
+			<item>content</item>
+			<item>ip</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>headWord</item>
+		</field>
+	</insert>
+	<update id="boardInfoUpdate">
+		<table>board</table>
+		<field>
+			<item>title</item>
+			<item>content</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<update id="boardInfoUpdateFront">
+		<table>board</table>
+		<field>
+			<item>title</item>
+			<item>content</item>
+			<item>headWord</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<delete id="boardInfoDelete">
+		<table>board</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<select id="boardInfoList">
+		<table>board</table>
+		<field>
+			<item>idx</item>
+			<item>code</item>
+			<item>thread</item>
+			<item>depth</item>
+			<item>userId</item>
+			<item>title</item>
+			<item>content</item>
+			<item>ip</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>headWord</item>
+			<item>
+			<![CDATA[
+				(SELECT COUNT(*) FROM boardMemo WHERE parentIdx = board.idx) as mCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			code=:code
+		]]>
+		</where>
+	</select>
+
+	<select id="boardInfoListUser">
+		<table>board</table>
+		<field>
+			<item>idx</item>
+			<item>code</item>
+			<item>thread</item>
+			<item>depth</item>
+			<item>userId</item>
+			<item>title</item>
+			<item>content</item>
+			<item>ip</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>headWord</item>
+			<item>
+			<![CDATA[
+				(SELECT COUNT(*) FROM boardMemo WHERE parentIdx = board.idx) as mCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			userId=:userId
+		]]>
+		</where>
+	</select>
+
+	<select id="boardInfoSelect">
+		<table>board</table>
+		<field>
+			<item>idx</item>
+			<item>code</item>
+			<item>thread</item>
+			<item>depth</item>
+			<item>userId</item>
+			<item>title</item>
+			<item>content</item>
+			<item>ip</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>headWord</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</select>
+
+	<select id="boardTotalCnt" desc="글 갯수">
+		<table>board</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as boardCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			code=:code
+		]]>
+		</where>
+	</select>
+
+	<select id="boardTotalCntUser" desc="글 갯수">
+		<table>board</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as boardCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			userId=:userId
+		]]>
+		</where>
+	</select>
+
+	<select id="getBoardThread" desc="글 갯수">
+		<table>board</table>
+		<field>
+			<item>
+			<![CDATA[
+				min(thread) as minThread
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			code=:code
+		]]>
+		</where>
+	</select>
+</data> 

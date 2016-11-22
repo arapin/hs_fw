@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="bcInfoInsert" desc="게시판정보 입력">
+		<table>boardConfig</table>
+		<field>
+			<item>boardCode</item>
+			<item>boardName</item>
+			<item>boardType</item>
+			<item>depthType</item>
+			<item>ownerId</item>
+			<item>useType</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<update id="bcInfoUpdate">
+		<table>boardConfig</table>
+		<field>
+			<item>boardName</item>
+			<item>boardType</item>
+			<item>depthType</item>
+			<item>ownerId</item>
+			<item>useType</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<select id="bcInfoMngList">
+		<table>boardConfig</table>
+		<field>
+			<item>idx</item>
+			<item>boardCode</item>
+			<item>boardName</item>
+			<item>boardType</item>
+			<item>depthType</item>
+			<item>ownerId</item>
+			<item>useType</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+
+	<select id="bcInfoSelect">
+		<table>boardConfig</table>
+		<field>
+			<item>boardCode</item>
+			<item>boardName</item>
+			<item>boardType</item>
+			<item>depthType</item>
+			<item>ownerId</item>
+			<item>useType</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</select>
+
+	<select id="bcTotalCnt" desc="게시판 갯수">
+		<table>boardConfig</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as bcCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		</where>
+	</select>
+
+</data> 

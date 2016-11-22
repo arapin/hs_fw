@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="multimediaInfoInsert" desc="파일정보 입력">
+		<table>multimedia</table>
+		<field>
+			<item>seq</item>
+			<item>url</item>
+			<item>writeDate</item>
+		</field>
+	</insert>
+	<update id="multimediaInfoUpdate" desc="파일 부모번호 수정">
+		<table>multimedia</table>
+		<field>
+			<item>url</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<select id="multimediaTotalCnt">
+		<table>multimedia</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as mmCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+	<select id="multimediaInfoList">
+		<table>multimedia</table>
+		<field>
+			<item>idx</item>
+			<item>seq</item>
+			<item>url</item>
+			<item>writeDate</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+	<select id="mainMovieSelect">
+		<table>multimedia</table>
+		<field>
+			<item>idx</item>
+			<item>seq</item>
+			<item>url</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+</data> 

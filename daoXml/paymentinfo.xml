@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="paymentInfoInsert">
+		<table>payment</table>
+		<field>
+			<item>payType</item>
+			<item>proType</item>
+			<item>userId</item>
+			<item>price</item>
+			<item>dsPrice</item>
+			<item>payPrice</item>
+			<item>payInfo</item>
+			<item>payState</item>
+			<item>payDate</item>
+			<item>cancelInfo</item>
+			<item>cancelDate</item>
+			<item>payOffice</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<update id="paymentInfoUpdate">
+		<table>payment</table>
+		<field>
+			<item>payState</item>
+			<item>cancelDate</item>
+			<item>cancelInfo</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<update id="paymentApplyUpdate">
+		<table>payment</table>
+		<field>
+			<item>payState</item>
+			<item>payInfo</item>
+			<item>payPrice</item>
+			<item>payDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<delete id="paymentInfoDelete">
+		<table>payment</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<select id="paymentIsPayInfo">
+		<table>payment</table>
+		<field>
+			<item>payType</item>
+			<item>payPrice</item>
+			<item>payState</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</select>
+	<select id="getPaymentInfoMngList">
+		<table>
+			<![CDATA[
+				payment as a, reservation as b
+			]]>
+		</table>
+		<field>
+			<item>a.idx</item>
+			<item>payType</item>
+			<item>proType</item>
+			<item>userId</item>
+			<item>price</item>
+			<item>payPrice</item>
+			<item>payInfo</item>
+			<item>payDate</item>
+			<item>payState</item>
+			<item>a.regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = b.paymentIdx
+		]]>
+		</where>
+	</select>
+	<select id="getPaymentInfoUserList">
+		<table>payment</table>
+		<field>
+			<item>payType</item>
+			<item>proType</item>
+			<item>userId</item>
+			<item>price</item>
+			<item>payPrice</item>
+			<item>payInfo</item>
+			<item>payDate</item>
+			<item>payState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+				userId = :userId
+		]]>
+		</where>
+	</select>
+	<select id="getPaymentInfoSHList">
+		<table>
+			<![CDATA[
+				payment as a, reservation as b
+			]]>
+		</table>
+		<field>
+			<item>payType</item>
+			<item>proType</item>
+			<item>userId</item>
+			<item>price</item>
+			<item>payPrice</item>
+			<item>payInfo</item>
+			<item>payDate</item>
+			<item>payState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+				a.idx = b.paymentIdx AND b.SHIdx = :SHIdx
+		]]>
+		</where>
+	</select>
+	<select id="paymentTotalCnt" desc="결제수">
+		<table>
+			<![CDATA[
+				payment as a, reservation as b
+			]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as paymentCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = b.paymentIdx
+		]]>
+		</where>
+	</select>
+	<select id="myPaymentTotalCnt" desc="결제수">
+		<table>payment</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as paymentCnt
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				userId = :userId
+			]]>
+		</where>
+	</select>
+	<select id="myPaymentSHTotalCnt" desc="결제수">
+		<table>
+			<![CDATA[
+				payment as a, reservation as b
+			]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as paymentCnt
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				a.idx = b.paymentIdx AND b.SHIdx = :SHIdx
+			]]>
+		</where>
+	</select>
+	<select id="paymentCancelInfo">
+		<table>payment</table>
+		<field>
+			<item>payType</item>
+			<item>proType</item>
+			<item>userId</item>
+			<item>payPrice</item>
+			<item>payState</item>
+			<item>payDate</item>
+			<item>cancelInfo</item>
+			<item>cancelDate</item>
+			<item>payInfo</item>
+			<item>price</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+
+	<select id="paymentCalcResList">
+		<table>
+			<![CDATA[
+				payment as a, reservation as b
+			]]>
+		</table>
+		<field>
+			<item>payType</item>
+			<item>a.proType</item>
+			<item>a.userId</item>
+			<item>payPrice</item>
+			<item>payState</item>
+			<item>payDate</item>
+			<item>payInfo</item>
+			<item>a.price</item>
+			<item>resState</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = b.paymentIdx AND b.SHIdx = :SHIdx AND payState = 'I'
+		]]>
+		</where>
+	</select>
+
+	<select id="paymentCalcResTotalInfo">
+		<table>
+			<![CDATA[
+				payment as a, reservation as b
+			]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				SUM(payPrice) as totalPrice
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				COUNT(*) as totalCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = b.paymentIdx AND b.SHIdx = :SHIdx AND payState = 'I'
+		]]>
+		</where>
+	</select>
+
+	<select id="paymentCalcAqList">
+		<table>
+			<![CDATA[
+				payment as a, aqBoard as b
+			]]>
+		</table>
+		<field>
+			<item>payType</item>
+			<item>proType</item>
+			<item>userId</item>
+			<item>payPrice</item>
+			<item>payState</item>
+			<item>payDate</item>
+			<item>cancelInfo</item>
+			<item>cancelDate</item>
+			<item>payInfo</item>
+			<item>price</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = b.paymentIdx AND b.SHIdx = :SHIdx
+		]]>
+		</where>
+	</select>
+
+	<select id="paymentCalcShamanUser" desc="정산대상 무속인 가져오기">
+		<table>
+		<![CDATA[
+			payment as a, reservation as b
+		]]>
+		</table>
+		<field>
+			<item>SHIdx</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.idx = b.paymentIdx AND a.payState = 'I'
+		]]>
+		</where>
+	</select>
+</data> 

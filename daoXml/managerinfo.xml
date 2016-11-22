@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<insert id="managerInfoInsert" desc="관리자정보 입력">
+		<table>manager</table>
+		<field>
+			<item>mngId</item>
+			<item>mngPwd</item>
+			<item>mngName</item>
+			<item>writeDate</item>
+			<item>mngLevel</item>
+		</field>
+	</insert>
+
+	<update id="managerInfoUpdate" desc="관리자정보 수정">
+		<table>manager</table>
+		<field>
+			<item>mngId</item>
+			<item>mngPwd</item>
+			<item>mngName</item>
+			<item>mngLevel</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+
+	<delete id="managerInfoDelete" desc="관리자정보 삭제">
+		<table>manager</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+
+	<select id="managerCnt" desc="관리자유무 판단">
+		<table>manager</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as mngCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			mngId=:mngId
+		]]>
+		</where>
+	</select>
+	<select id="managerLogin" desc="관리자정보 로그인 정보">
+		<table>manager</table>
+		<field>
+			<item>mngId</item>
+			<item>mngPwd</item>
+			<item>mngLevel</item>
+		</field>
+		<where>
+		<![CDATA[
+			mngId=:mngId
+		]]>
+		</where>
+	</select>
+	<select id="managerModify" desc="회원정보 수정 정보추출">
+		<table>manager</table>
+		<field>
+			<item>mngId</item>
+			<item>mngName</item>
+			<item>mngPwd</item>
+			<item>mngLevel</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</select>
+	<select id="managerList" desc="관리자리스트">
+		<table>manager</table>
+		<field>
+			<item>idx</item>
+			<item>mngId</item>
+			<item>mngName</item>
+			<item>writeDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+
+	<select id="managerTotalCnt" desc="관리자수">
+		<table>manager</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as mngCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		</where>
+	</select>
+</data> 

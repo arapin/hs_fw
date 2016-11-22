@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<select id="mainLoctionList">
+		<table>mainLocation</table>
+		<field>
+			<item>idx</item>
+			<item>seq</item>
+			<item>locationName</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+	<select id="mainLoctionSelect">
+		<table>mainLocation</table>
+		<field>
+			<item>idx</item>
+			<item>seq</item>
+			<item>locationName</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+	<select id="mainLoctionTotalCnt">
+		<table>mainLocation</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as mlCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+		]]>
+		</where>
+	</select>
+</data> 

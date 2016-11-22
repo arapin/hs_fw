@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<select id="zipTWODepth" desc="주소 두번째">
+		<table>ds_zip</table>
+		<field>
+			<item>ds_gugun</item>
+		</field>
+		<where>
+		<![CDATA[
+			ds_sido=:ds_sido GROUP BY ds_gugun ORDER BY ds_gugun
+		]]>
+		</where>
+	</select>
+	<select id="zipTWODepthCreate" desc="검색결과 없을시 주소 검색">
+		<table>ds_zip</table>
+		<field>
+			<item>ds_sido</item>
+			<item>ds_gugun</item>
+			<item>ds_dong</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+</data> 

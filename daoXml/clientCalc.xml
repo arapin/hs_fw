@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="clientCalcInsert" desc="정산내역 입력">
+		<table>clientCalc</table>
+		<field>
+			<item>SHId</item>
+			<item>year</item>
+			<item>month</item>
+			<item>calcPrice</item>
+			<item>calcCnt</item>
+			<item>calcState</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<update id="clientCalcStateUpdate" desc="정산금액 지급 수정">
+		<table>clientCalc</table>
+		<field>
+			<item>calcState</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<select id="calcList" desc="정산 내역">
+		<table>clientCalc</table>
+		<field>
+			<item>idx</item>
+			<item>SHId</item>
+			<item>year</item>
+			<item>month</item>
+			<item>calcPrice</item>
+			<item>calcCnt</item>
+			<item>calcState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			month = :month AND year = :year
+		]]>
+		</where>
+	</select>
+	<select id="calcTotalList" desc="정산 내역">
+		<table>clientCalc</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as scCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			month = :month AND year = :year
+		]]>
+		</where>
+	</select>
+	<select id="clientCalcList" desc="무속인별 정산 내역">
+		<table>clientCalc</table>
+		<field>
+			<item>idx</item>
+			<item>SHId</item>
+			<item>year</item>
+			<item>month</item>
+			<item>calcPrice</item>
+			<item>calcCnt</item>
+			<item>calcState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId = :SHId AND year = :year
+		]]>
+		</where>
+	</select>
+	<select id="clientCalcTotalList" desc="무속인별 정산 내역">
+		<table>clientCalc</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as scCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId = :SHId AND year = :year
+		]]>
+		</where>
+	</select>
+	<select id="clientCalcTotalInfo" desc="무속인별 정산 년도 합">
+		<table>clientCalc</table>
+		<field>
+			<item>
+			<![CDATA[
+				SUM(calcPrice) as totalPrice
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				SUM(calcCnt) as totalCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHId = :SHId AND year = :year
+		]]>
+		</where>
+	</select>
+	<select id="monthCalcCount" desc="정산내역 조회">
+		<table>clientCalc</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as scCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			month = :month AND year = :year
+		]]>
+		</where>
+	</select>
+</data> 

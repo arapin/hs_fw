@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="userInfoInsert2">
+		<table>userinfo</table>
+		<field>
+			<item>AAA</item>
+			<item>BBB</item>
+			<item>CCC</item>
+			<item>DDD</item>
+			<item>EEE</item>
+		</field>
+	</insert>
+	<update id="userInfoUpdate">
+		<table>userinfo</table>
+		<field>
+			<item>AAA</item>
+			<item>BBB</item>
+			<item>CCC</item>
+			<item>DDD</item>
+			<item>EEE</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<delete id="userInfoDelete">
+		<table>userinfo</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<select id="userInfoList">
+		<table>userinfo</table>
+		<field>
+			<item>AAA</item>
+			<item>BBB</item>
+			<item>CCC</item>
+			<item>DDD</item>
+			<item>EEE</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx AND name LIKE :name
+		]]>
+		</where>
+	</select>
+</data> 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="sprInfoInsert">
+		<table>shamanProductRelay</table>
+		<field>
+			<item>SHIdx</item>
+			<item>proIdx</item>
+			<item>price</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<insert id="sprInfoInsertFront">
+		<table>shamanProductRelay</table>
+		<field>
+			<item>SHIdx</item>
+			<item>proIdx</item>
+			<item>proTime</item>
+			<item>price</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	
+	<delete id="sprInfoDelete">
+		<table>shamanProductRelay</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<delete id="sprInfoDeleteDefault">
+		<table>shamanProductRelay</table>
+		<where>
+		<![CDATA[
+			SHIdx=:SHIdx
+		]]>
+		</where>
+	</delete>
+	<select id="sprInfoList">
+		<table>
+		<![CDATA[
+			shamanProductRelay as a, product as b
+		]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				a.idx as sprIdx 
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				proName
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.proTime
+			]]>
+			</item>
+			<item>price</item>
+			<item>proIdx</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.proIdx = b.idx AND SHIdx=:SHIdx ORDER BY proName
+		]]>
+		</where>
+	</select>
+	<select id="sprSelectInfo">
+		<table>
+		<![CDATA[
+			shamanProductRelay as a, product as b
+		]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				a.idx as sprIdx 
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				proName
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.proTime
+			]]>
+			</item>
+			<item>price</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.proIdx = b.idx AND proIdx = :proIdx AND SHIdx=:SHIdx
+		]]>
+		</where>
+	</select>
+	<select id="sprSelectInfo2">
+		<table>
+		<![CDATA[
+			shamanProductRelay as a, product as b
+		]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				proName
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.proTime
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				b.idx as proIdx
+			]]>
+			</item>
+			<item>price</item>
+		</field>
+		<where>
+		<![CDATA[
+			a.proIdx = b.idx AND a.idx=:idx
+		]]>
+		</where>
+	</select>
+</data> 

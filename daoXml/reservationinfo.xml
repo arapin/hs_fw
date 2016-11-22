@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="reservationInfoInsert">
+		<table>reservation</table>
+		<field>
+			<item>SHIdx</item>
+			<item>proIdx</item>
+			<item>paymentIdx</item>
+			<item>resUserId</item>
+			<item>resDate</item>
+			<item>resStartTime</item>
+			<item>resEndTime</item>
+			<item>resCnt</item>
+			<item>resState</item>
+			<item>regDate</item>
+		</field>
+	</insert>
+	<update id="reservationInfoUpdate">
+		<table>reservation</table>
+		<field>
+			<item>resState</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<update id="reservationInfoUpdatePayment">
+		<table>reservation</table>
+		<field>
+			<item>resState</item>
+		</field>
+		<where>
+		<![CDATA[
+			paymentIdx=:paymentIdx
+		]]>
+		</where>
+	</update>
+	<update id="reservationInfoUpdateShaman">
+		<table>reservation</table>
+		<field>
+			<item>resDate</item>
+			<item>resStartTime</item>
+			<item>resEndTime</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<select id="reservationInfoMngList">
+		<table>reservation</table>
+		<field>
+			<item>idx</item>
+			<item>SHIdx</item>
+			<item>proIdx</item>
+			<item>paymentIdx</item>
+			<item>resUserId</item>
+			<item>resDate</item>
+			<item>resStartTime</item>
+			<item>resEndTime</item>
+			<item>resState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			1=1
+		]]>
+		</where>
+	</select>
+	<select id="reservationCancelInfo">
+		<table>reservation</table>
+		<field>
+			<item>paymentIdx</item>
+			<item>proIdx</item>
+			<item>SHIdx</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+	<select id="reservationInfoUserList">
+		<table>reservation</table>
+		<field>
+			<item>idx</item>
+			<item>SHIdx</item>
+			<item>proIdx</item>
+			<item>paymentIdx</item>
+			<item>resUserId</item>
+			<item>resDate</item>
+			<item>resStartTime</item>
+			<item>resEndTime</item>
+			<item>resState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			resUserId = :userId
+		]]>
+		</where>
+	</select>
+	<select id="reservationInfoSHList">
+		<table>reservation</table>
+		<field>
+			<item>idx</item>
+			<item>SHIdx</item>
+			<item>proIdx</item>
+			<item>paymentIdx</item>
+			<item>resUserId</item>
+			<item>resDate</item>
+			<item>resStartTime</item>
+			<item>resEndTime</item>
+			<item>resState</item>
+			<item>regDate</item>
+			<item>resCnt</item>
+		</field>
+		<where>
+		<![CDATA[
+			SHIdx = :SHIdx
+		]]>
+		</where>
+	</select>
+	<select id="reservationInfoView">
+		<table>reservation</table>
+		<field>
+			<item>resUserId</item>
+			<item>resDate</item>
+			<item>resStartTime</item>
+			<item>resEndTime</item>
+			<item>resState</item>
+			<item>regDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+	<select id="reservationTotalCnt" desc="예약수">
+		<table>reservation</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as resCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			1 = 1
+		]]>
+		</where>
+	</select>
+	<select id="myReservationTotalCnt" desc="예약수">
+		<table>reservation</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as resCnt
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				resUserId = :userId
+			]]>
+		</where>
+	</select>
+	<select id="myReservationSHTotalCnt" desc="예약수">
+		<table>reservation</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as resCnt
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				SHIdx = :SHIdx
+			]]>
+		</where>
+	</select>
+	<select id="getPayProductName" desc="결제 상품이름 추출">
+		<table>
+		<![CDATA[
+			product AS a, shamanProductRelay AS b, reservation AS c
+		]]>
+		</table>
+		<field>
+			<item>proName</item>
+		</field>
+		<where>
+			<![CDATA[
+				a.idx = b.proIdx AND b.SHIdx = c.SHIdx AND b.proIdx = c.proIdx AND c.paymentIdx = :idx
+			]]>
+		</where>
+	</select>
+
+	<select id="getResCnt" desc="예약 시간 체크">
+		<table>reservation</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as resCnt
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				resDate = :resDate AND SHIdx = :SHIdx 
+			]]>
+		</where>
+	</select>
+	<select id="getResViewInfo" desc="예약/예약자 정보">
+		<table>
+		<![CDATA[
+			reservation as a, userinfo as b, product as c, payment as d
+		]]>
+		</table>
+		<field>
+			<item>
+			<![CDATA[
+				b.name
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				b.phone
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				b.birthday
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				b.birthdayType
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				b.birthdayTime
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				c.proName
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.resDate
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.resStartTime
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.resEndTime
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				a.resCnt
+			]]>
+			</item>
+			<item>
+			<![CDATA[
+				d.payPrice
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				a.resUserId = b.id AND a.proIdx = c.idx AND a.paymentIdx = d.idx AND a.idx = :idx
+			]]>
+		</where>
+	</select>
+
+	<select id="getResStateCnt" desc="예약 상태별 카운트">
+		<table>reservation</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as resCnt
+			]]>
+			</item>
+		</field>
+		<where>
+			<![CDATA[
+				resState = :state AND SHIdx = :SHIdx 
+			]]>
+		</where>
+	</select>
+</data> 

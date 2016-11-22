@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="logcInfoInsert" desc="로그정보 입력">
+		<table>logc</table>
+		<field>
+			<item>type</item>
+			<item>remoteAddr</item>
+			<item>memo</item>
+			<item>logDate</item>
+			<item>userId</item>
+		</field>
+	</insert>
+</data> 

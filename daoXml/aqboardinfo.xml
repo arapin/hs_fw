@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<insert id="aqBoardInfoInsert" desc="신점문의정보 입력">
+		<table>aqBoard</table>
+		<field>
+			<item>cate</item>
+			<item>choice</item>
+			<item>content</item>
+			<item>hit</item>
+			<item>parentIdx</item>
+			<item>paymentIdx</item>
+			<item>proCate</item>
+			<item>regDate</item>
+			<item>state</item>
+			<item>title</item>
+			<item>userId</item>
+			<item>answerStartDate</item>
+			<item>answerEndDate</item>
+		</field>
+	</insert>
+	<insert id="aqBoardAnswerInsert" desc="신점답변정보 입력">
+		<table>aqBoard</table>
+		<field>
+			<item>cate</item>
+			<item>content</item>
+			<item>parentIdx</item>
+			<item>regDate</item>
+			<item>userId</item>
+		</field>
+	</insert>
+	<update id="aqBoardInfoUpdate">
+		<table>aqBoard</table>
+		<field>
+			<item>title</item>
+			<item>content</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<update id="aqStateUpdate">
+		<table>aqBoard</table>
+		<field>
+			<item>state</item>
+		</field>
+		<where>
+		<![CDATA[
+			paymentIdx=:paymentIdx
+		]]>
+		</where>
+	</update>
+	<update id="aqStateUpdateUser">
+		<table>aqBoard</table>
+		<field>
+			<item>state</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<update id="aqChoiceUpdateUser">
+		<table>aqBoard</table>
+		<field>
+			<item>choice</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</update>
+	<delete id="aqInfoDelete">
+		<table>aqBoard</table>
+		<where>
+		<![CDATA[
+			idx=:idx
+		]]>
+		</where>
+	</delete>
+	<select id="aqBoardInfoList">
+		<table>aqBoard as a</table>
+		<field>
+			<item>idx</item>
+			<item>cate</item>
+			<item>parentIdx</item>
+			<item>paymentIdx</item>
+			<item>proCate</item>
+			<item>title</item>
+			<item>userId</item>
+			<item>state</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>
+			<![CDATA[
+				(SELECT COUNT(*) FROM aqBoard WHERE cate='A' AND parentIdx = a.idx) as answerCnt
+			]]>
+			</item>
+			<item>answerStartDate</item>
+			<item>answerEndDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='Q' AND state != 'W'
+		]]>
+		</where>
+	</select>
+	<select id="aqBoardInfoListUser">
+		<table>aqBoard</table>
+		<field>
+			<item>idx</item>
+			<item>cate</item>
+			<item>parentIdx</item>
+			<item>paymentIdx</item>
+			<item>proCate</item>
+			<item>title</item>
+			<item>userId</item>
+			<item>state</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>answerStartDate</item>
+			<item>answerEndDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='Q' AND state != 'W' AND userId = :userId
+		]]>
+		</where>
+	</select>
+	<select id="aqBoardInfoListMng">
+		<table>aqBoard</table>
+		<field>
+			<item>idx</item>
+			<item>cate</item>
+			<item>parentIdx</item>
+			<item>paymentIdx</item>
+			<item>title</item>
+			<item>userId</item>
+			<item>state</item>
+			<item>hit</item>
+			<item>regDate</item>
+			<item>answerStartDate</item>
+			<item>answerEndDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='Q'
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardInfoSelect">
+		<table>aqBoard</table>
+		<field>
+			<item>idx</item>
+			<item>cate</item>
+			<item>choice</item>
+			<item>hit</item>
+			<item>parentIdx</item>
+			<item>paymentIdx</item>
+			<item>proCate</item>
+			<item>regDate</item>
+			<item>title</item>
+			<item>userId</item>
+			<item>content</item>
+			<item>state</item>
+			<item>answerStartDate</item>
+			<item>answerEndDate</item>
+		</field>
+		<where>
+		<![CDATA[
+			idx = :idx
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardAnswerInfo">
+		<table>aqBoard</table>
+		<field>
+			<item>idx</item>
+			<item>cate</item>
+			<item>choice</item>
+			<item>hit</item>
+			<item>parentIdx</item>
+			<item>paymentIdx</item>
+			<item>proCate</item>
+			<item>regDate</item>
+			<item>title</item>
+			<item>userId</item>
+			<item>content</item>
+			<item>state</item>
+		</field>
+		<where>
+		<![CDATA[
+			parentIdx = :idx AND cate = 'A'
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardAnswerInfoShaman">
+		<table>aqBoard</table>
+		<field>
+			<item>parentIdx</item>
+		</field>
+		<where>
+		<![CDATA[
+			userId = :userId AND cate = 'A'
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardInfoPay">
+		<table>aqBoard</table>
+		<field>
+			<item>title</item>
+		</field>
+		<where>
+		<![CDATA[
+			paymentIdx=:idx
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardTotalCnt" desc="글 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as aqCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='Q' AND state != 'W'
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardTotalCntMng" desc="글 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as aqCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='Q'
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardTotalCntUser" desc="글 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as aqCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='Q' AND userId = :userId
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardAnswerTotalCntMng" desc="답변 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as answerCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='A' AND parentIdx = :idx
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardUserAnswerTotalCntMng" desc="무속인 답변 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as answerCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='A' AND parentIdx = :idx AND userId = :userId
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardUserAnswerTotalCntShaman" desc="무속인 답변 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>
+			<![CDATA[
+				COUNT(*) as answerCnt
+			]]>
+			</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='A' AND  userId = :userId
+		]]>
+		</where>
+	</select>
+
+	<select id="aqBoardAnswerList" desc="답변 갯수">
+		<table>aqBoard</table>
+		<field>
+			<item>idx</item>
+			<item>choice</item>
+			<item>regDate</item>
+			<item>userId</item>
+			<item>content</item>
+		</field>
+		<where>
+		<![CDATA[
+			cate='A' AND parentIdx = :idx
+		]]>
+		</where>
+	</select>
+</data> 
